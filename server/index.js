@@ -44,7 +44,7 @@ app.delete('/deleteComments', function(request, response) {
   });
 });
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+app.listen(port, () => console.log(`Listening on port http://localhost:${port}`));
 
 app.use(express.static('public'));
 
