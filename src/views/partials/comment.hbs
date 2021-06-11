@@ -8,14 +8,20 @@
                 </figure>
             </div>
             <div class="media-content">
-                <p class="title is-4">{{ this.name }}</p>
+                <p class="title is-4">{{#if name}}
+                    {{ name }}
+                  {{/if}}  </p>    
             </div>
         </div>
 
         <div class="content">
-            {{ this.message }}
+           {{#if message}}
+                    {{ message }}
+                  {{/if}}  
 
-            <time datetime="2016-1-1">{{ this.time }}</time>
+            <sub> {{#if time}}
+                    {{{time }}}
+                  {{/if}}</sub>
         </div>
     </div>
 </div>
