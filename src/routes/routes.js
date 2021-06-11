@@ -3,7 +3,6 @@ const routes = express.Router();
 
 const DataAccessObject = require('../../server/dataAccessObject');
 const Comment = require('../../server/comment');
-const bodyParser = require('body-parser');
 
 const dataAccessObject = new DataAccessObject('../../database.sqlite3');
 const comment = new Comment(dataAccessObject);

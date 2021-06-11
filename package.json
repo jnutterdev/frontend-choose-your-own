@@ -6,7 +6,7 @@
     "scripts": {
         "// TODO: Add your start script if you are using a front-end JS framework": "",
         "start": "nodemon server",
-        "server": "",
+        "server": "nodemon server",
         "// TODO: You can remove concurrently if you're not using a front-end JS framework": "",
         "dev": ""
     },
@@ -30,8 +30,6 @@
         "express-handlebars": "^5.3.2",
         "express-validator": "^6.11.1",
         "handlebars": "^4.7.7",
-        "handlebars-dateformat": "^1.1.1",
-        "helper-dateformat": "^1.0.0",
-        "moment": "^2.29.1"
+        "handlebars-dateformat": "^1.1.1"
     }
 }
