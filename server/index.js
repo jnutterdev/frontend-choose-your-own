@@ -1,55 +1,48 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+const cors = require('cors');
+const exphbs = require('express-handlebars');
 
-const DataAccessObject = require('./dataAccessObject');
-const Comment = require('./comment');
+const bodyParser = require('body-parser');
+const path = require('path');
+// const DataAccessObject = require('./dataAccessObject');
+// const Comment = require('./comment');
 
 const app = express();
+app.use(cors());
 const port = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const dataAccessObject = new DataAccessObject('./database.sqlite3');
-const comment = new Comment(dataAccessObject);
+// templating engines
+app.engine('hbs', exphbs({ 
+  extname: 'hbs',
+  layoutsDir: "./src/views/",
+  defaultLayout: 'index'    
+}));
+app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, '/src/views'));
 
-comment.createTable().catch(error => {
-  console.log(`Error: ${JSON.stringify(error)}`);
-});
+app.use(express.static('public'));
 
-app.post('/createComment', function(request, response) {
-  const { body } = request;
-  comment.createComment(body).then(result => {
-    response.send(result);
-  });
-});
+// const dataAccessObject = new DataAccessObject('./database.sqlite3');
+// const comment = new Comment(dataAccessObject);
 
-app.get('/getComment', function(request, response) {
-  const { body } = request;
-  const { id } = body;
-  comment.getComment(id).then(result => {
-    response.send(result);
-  });
-});
+// comment.createTable().catch(error => {
+//   console.log(`Error: ${JSON.stringify(error)}`);
+// });
 
-app.get('/getComments', function(request, response) {
-  comment.getComments().then(result => {
-    response.send(result);
-  });
-});
+// routes for comments
+const commentRouter = require('../src/routes/routes.js');
+app.use('/', commentRouter);
 
-app.delete('/deleteComments', function(request, response) {
-  comment.deleteComments().then(result => {
-    response.send(result);
-  });
-});
 
 app.listen(port, () => console.log(`Listening on port http://localhost:${port}`));
 
-app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get('/', function(request, response) {
   const rootDir = __dirname.replace('/server', '');
-  response.sendFile(`${rootDir}/src/index.html`);
+  response.render(`${rootDir}/src/views`);
 });
+

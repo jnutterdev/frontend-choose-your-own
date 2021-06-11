@@ -1,0 +1,39 @@
+@media (min-width: 576px) {
+    form {
+        flex-shrink: 1;
+        width: 600px;
+        margin: 0 auto;
+    }
+    .card {
+        width: 600px;
+        margin: 0 auto;
+        min-width: 80%;
+    }
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+html {
+    background: #FFE01B;
+}
+
+.container {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+header,
+main,
+footer {
+    flex-shrink: 0;
+}
+
+main {
+    flex-grow: 1;
+}
