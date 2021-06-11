@@ -4,6 +4,8 @@ const exphbs = require('express-handlebars');
 
 const bodyParser = require('body-parser');
 const path = require('path');
+
+const { check, validationResult } = require('express-validator');
 // const DataAccessObject = require('./dataAccessObject');
 // const Comment = require('./comment');
 

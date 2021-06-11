@@ -32,7 +32,7 @@ routes.post('/createComment', function(request, response) {
   
   routes.get('/getComments', function(request, response) {
     comment.getComments().then(result => {
-      response.send(result);
+      response.render('../views/partials/comments', {comments: comments });
     });
   });
   
