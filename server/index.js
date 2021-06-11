@@ -12,7 +12,7 @@ app.use(cors());
 const port = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // templating engines
 app.set('views', path.join(__dirname, '../src/views/'));
@@ -40,13 +40,5 @@ const commentRouter = require('../src/routes/routes.js');
 const handlebarsDateformat = require('handlebars-dateformat');
 app.use('/', commentRouter);
 
-
 app.listen(port, () => console.log(`Listening on port http://localhost:${port}`));
-
-
-// http://expressjs.com/en/starter/basic-routing.html
-// app.get('/', function(request, response) {
-//   const rootDir = __dirname.replace('/server', '');
-//   response.render(`${rootDir}/src/views`);
-// });
 

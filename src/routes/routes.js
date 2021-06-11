@@ -17,12 +17,11 @@ routes.get('/', function(request, response) {
   });
 
 routes.post('/createComment', function(request, response) {
+  
   try {
     const { body } = request;
     comment.createComment(body).then(result => {
-      // response.render('main', {comments: result});
       response.redirect('/getComments');
-      
     });
   } catch(err) {
     response.status(500).send({ message: err.message })
@@ -30,28 +29,41 @@ routes.post('/createComment', function(request, response) {
   });
   
   routes.get('/getComment', function(request, response) {
+
+  try {
     const { body } = request;
     const { id } = body;
     comment.getComment(id).then(result => {
       response.send({ name: result.message });
     });
+  } catch(err) {
+    response.status(500).send({ message: err.message })
+  }
+  
   });
   
   routes.get('/getComments', function(request, response) {
-    comment.getComments().then(result => {
-      response.render('main', {userComment: result, name: result[1], message: result[1], time: result[1] });
-      
-      for (item in result) {
-        console.log(result)
-      }
-      
-    });
+    try {
+      comment.getComments().then(result => {
+        response.render('main', {userComment: result, name: result.name, message: result.message, created: result.created });
+      });
+    } catch(err) {
+      response.status(500).send({ message: err.message })
+    }
+    
   });
   
-  routes.delete('/deleteComments', function(request, response) {
-    comment.deleteComments().then(result => {
-      response.send(result);
-    });
+  routes.delete('/deleteComments/', function(request, response) {
+    try {
+      comment.deleteComments().then(result => {
+        
+        response.redirect('/getComments');
+        // response.send('deleted')
+      });
+    } catch(err) {
+      response.status(500).send({ message: err.message })
+    }
+   
   });
 
   module.exports = routes;
