@@ -56,9 +56,7 @@ routes.post('/createComment', function(request, response) {
   routes.delete('/deleteComments/', function(request, response) {
     try {
       comment.deleteComments().then(result => {
-        
-        response.redirect('/getComments');
-        // response.send('deleted')
+        response.status(200).send('All comments deleted.')
       });
     } catch(err) {
       response.status(500).send({ message: err.message })
