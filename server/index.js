@@ -1,6 +1,6 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
-
+const methodOverride = require('method-override')
 const bodyParser = require('body-parser');
 const path = require('path');
 
@@ -10,6 +10,7 @@ const port = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(methodOverride('_method'))
 
 // templating engines
 app.set('views', path.join(__dirname, '../src/views/'));

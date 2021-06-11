@@ -24,6 +24,11 @@
                 {{#each userComment}}
                     {{> comment}}
                 {{/each}}
-            </div>      
+            </div>
+                    <form action="/deleteComments?_method=DELETE" method="POST">
+                         <div class="control mb-5 has-text-centered">
+                                <button class="button drop-shadows">Delete All Comments</button>
+                            </div>
+                    </form>
 
         </main>
