@@ -62,5 +62,5 @@ We recommend spending up to four hours on this assignment. If you don't get ever
 
 ```
 $ npm install
-$ npm run dev
+$ npm run start
 ```
