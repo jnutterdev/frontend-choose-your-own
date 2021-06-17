@@ -27,7 +27,7 @@ routes.post('/createComment', function(request, response) {
   }
   });
   
-  routes.get('/getComment', function(request, response) {
+  routes.getComment('/getComment', function(request, response) {
 
   try {
     const { body } = request;
@@ -41,7 +41,7 @@ routes.post('/createComment', function(request, response) {
   
   });
   
-  routes.get('/getComments', function(request, response) {
+  routes.getComments('/getComments', function(request, response) {
     try {
       comment.getComments().then(result => {
         response.render('main', {userComment: result, name: result.name, message: result.message, created: result.created });

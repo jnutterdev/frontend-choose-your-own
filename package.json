@@ -8,7 +8,8 @@
         "start": "nodemon server",
         "server": "nodemon server",
         "// TODO: You can remove concurrently if you're not using a front-end JS framework": "",
-        "dev": "nodemon server"
+        "dev": "nodemon server",
+        "test": "jest"
     },
     "devDependencies": {
         "body-parser": "1.18.3",
